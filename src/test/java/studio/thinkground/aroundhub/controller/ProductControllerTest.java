@@ -63,23 +63,24 @@ public class ProductControllerTest {
   @Test
   @DisplayName("Product 데이터 생성 테스트")
   void createProductTest() throws Exception {
-	// mockito 라이브러리: mock갹체 
-    //Mock 객체에서 특정 메소드가 실행되는 경우 실제 Return을 줄 수 없기 때문에 아래와 같이 가정 사항을 만들어줌
+	// mockito 라이브러리: mock객체 
+    //Mock 객체에서 특정 메소드가 실행되는 경우 실제 Return을 줄 수 없기 때문에 아래와 같이 실행상황을 가정하여 리턴값 체크 
     given(productService.saveProduct("15871", "pen", 5000, 2000)).willReturn(
         new ProductDto("15871", "pen", 5000, 2000));
 
     ProductDto productDto = ProductDto.builder().productId("15871").productName("pen")
-        .productPrice(5000).productStock(2000).build();
-    Gson gson = new Gson();
-    String content = gson.toJson(productDto);
+        .productPrice(5000).productStock(2000).build(); // builder
+    Gson gson = new Gson(); // gson: json를 자유롭게 다룰 수 있도록 편의를 제공한 라이브러리 
+    String content = gson.toJson(productDto);// gson.toJson메서드: productDto 객체를 json 형태로 변경 
 
     // 아래 코드로 json 형태 변경 작업을 대체할 수 있음
     // String json = new ObjectMapper().writeValueAsString(productDto);
 
     mockMvc.perform(
-            post("/api/v1/product-api/product")
-                .content(content)
-                .contentType(MediaType.APPLICATION_JSON))
+            post("/api/v1/product-api/product") //post 방식으로 통신 
+                .content(content) // mockMvc.perform.content: 바디값 넘겨줄 내용 전달  
+                .contentType(MediaType.APPLICATION_JSON)) // .contentType: 타입지정. 일반적으로 json 형태사용시 APPLICATION_JSON 사용
+    	// .andExpect: 요청에 대한 기대값 확인 
         .andExpect(status().isOk())
         .andExpect(jsonPath("$.productId").exists())
         .andExpect(jsonPath("$.productName").exists())
