@@ -40,13 +40,12 @@ public class ProductControllerTest {
 	// mockito 라이브러리: mock 객체의 생성, 사용에 도움 
     // given (~와 같은 상황이 주어졌을 때): Mock 객체가 특정 상황에서 해야하는 행위를 정의하는 메소드
     given(productService.getProduct("12315")).willReturn( // given안의 메서드가 실행될 때, wiiReturn뒤의 값이 리턴될거다. 여기선 getProduct메서드자체가 ProductDto객체를 리턴하기 때문에 이렇게 리턴.
-        new ProductDto("15871", "pen", 5000, 2000));
+        new ProductDto("15871", "pen", 5000, 2000)); 
 
     String productId = "12315";
 
-    // andExpect : 기대하는 값이 나왔는지 체크해볼 수 있는 메소드
     mockMvc.perform( // mockMvc.perform 메서드: rest api 테스트 환경 제공 
-            get("/api/v1/product-api/product/" + productId))
+            get("/api/v1/product-api/product/" + productId)) // get 통신방식 지정. 
         .andExpect(status().isOk())
         .andExpect(jsonPath("$.productId").exists()) // json path의 depth가 깊어지면 .을 추가하여 탐색할 수 있음 (ex : $.productId.productIdName)
         .andExpect(jsonPath("$.productName").exists())
