@@ -44,9 +44,10 @@ public class ProductControllerTest {
 
     String productId = "12315";
 
+    // builder 구조로 .으로 연결  
     mockMvc.perform( // mockMvc.perform 메서드: rest api 테스트 환경 제공 
             get("/api/v1/product-api/product/" + productId)) // get 통신방식 지정. 
-        .andExpect(status().isOk())
+        .andExpect(status().isOk())     // andExpect : 기대하는 값이 나왔는지 체크해볼 수 있는 메소드
         .andExpect(jsonPath("$.productId").exists()) // json path의 depth가 깊어지면 .을 추가하여 탐색할 수 있음 (ex : $.productId.productIdName)
         .andExpect(jsonPath("$.productName").exists())
         .andExpect(jsonPath("$.productPrice").exists())
