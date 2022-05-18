@@ -41,7 +41,7 @@ public class TestLifeCycle {
     }
 
     @Test
-    @DisplayName("Test Case 2!!!")
+    @DisplayName("Test Case 2!!!") // 메서드 이름변경 
     void test2() {
         System.out.println("## test2 시작 ##");
         System.out.println();
