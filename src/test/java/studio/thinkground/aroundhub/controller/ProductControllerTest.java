@@ -1,5 +1,6 @@
 package studio.thinkground.aroundhub.controller;
 
+// 코드의 길이를 짧게 하기 위해 ststic import 
 import static org.mockito.BDDMockito.given;
 import static org.mockito.Mockito.verify;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
