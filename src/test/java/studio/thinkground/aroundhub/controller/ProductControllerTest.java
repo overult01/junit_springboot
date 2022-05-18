@@ -48,8 +48,8 @@ public class ProductControllerTest {
     mockMvc.perform( // mockMvc.perform 메서드: rest api 테스트 환경 제공 
             get("/api/v1/product-api/product/" + productId)) // get 통신방식 지정. 
         .andExpect(status().isOk())     // andExpect : 기대하는 값이 나왔는지 체크해볼 수 있는 메소드
-        .andExpect(jsonPath("$.productId").exists()) // json path의 depth가 깊어지면 .을 추가하여 탐색할 수 있음 (ex : $.productId.productIdName)
-        .andExpect(jsonPath("$.productName").exists())
+        .andExpect(jsonPath("$.productId").exists()) // http request를 날렸을 때 전달받은 json형태의 body값이 기대한 대로인지 확인. json path의 depth가 깊어지면 .을 추가하여 탐색할 수 있음 (ex : $.productId.productIdName)
+        .andExpect(jsonPath("$.productName").exists()) // $.json의 key값 
         .andExpect(jsonPath("$.productPrice").exists())
         .andExpect(jsonPath("$.productStock").exists())
         .andDo(print());
