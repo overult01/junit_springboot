@@ -28,7 +28,7 @@ public class ProductController {
     private final ProductService productService;
 
     @Autowired
-    public ProductController(ProductService productService) {
+    public ProductController(ProductService productService) { // 여기서 @Autowired로 자동으로 주입받은 서비스를, test쪽에서는 @MockBean으로 mock객체 만들어 테스트 
         this.productService = productService;
     }
 
