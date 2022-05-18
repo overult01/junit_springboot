@@ -14,6 +14,7 @@ import com.google.gson.Gson;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureWebMvc;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.http.MediaType;
@@ -21,8 +22,8 @@ import org.springframework.test.web.servlet.MockMvc;
 import studio.thinkground.aroundhub.data.dto.ProductDto;
 import studio.thinkground.aroundhub.service.impl.ProductServiceImpl;
 
-@WebMvcTest(ProductController.class)
-//@AutoConfigureWebMvc // 이 어노테이션을 통해 MockMvc를 Builder 없이 주입받을 수 있음
+@WebMvcTest(ProductController.class) // 스프링의 모든 빈을 로드하여 테스트하는 방식인 @SpringBootTest어노테이션 대신 컨트롤러 관련 코드만 테스트하고자 할때 사용하는 어노테이션
+// @AutoConfigureWebMvc // 이 어노테이션을 통해 MockMvc를 Builder 없이 주입받을 수 있음
 public class ProductControllerTest {
 
   @Autowired
