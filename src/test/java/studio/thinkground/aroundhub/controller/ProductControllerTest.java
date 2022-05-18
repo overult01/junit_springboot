@@ -33,12 +33,13 @@ public class ProductControllerTest {
   ProductServiceImpl productService;
 
   // http://localhost:8080/api/v1/product-api/product/{productId}
-  @Test
-  @DisplayName("Product 데이터 가져오기 테스트")
+  @Test // 테스트 1개의 주체 
+  @DisplayName("Product 데이터 가져오기 테스트") // 테스트에 대한 설명 
   void getProductTest() throws Exception {
 
-    // given : Mock 객체가 특정 상황에서 해야하는 행위를 정의하는 메소드
-    given(productService.getProduct("12315")).willReturn(
+	// mockito 라이브러리: mock 객체의 생성, 사용에 도움 
+    // given (~와 같은 상황이 주어졌을 때): Mock 객체가 특정 상황에서 해야하는 행위를 정의하는 메소드
+    given(productService.getProduct("12315")).willReturn( // given안의 메서드가 실행될 때, wiiReturn뒤의 값이 리턴될거다. 여기선 getProduct메서드자체가 ProductDto객체를 리턴하기 때문에 이렇게 리턴.
         new ProductDto("15871", "pen", 5000, 2000));
 
     String productId = "12315";
@@ -62,6 +63,7 @@ public class ProductControllerTest {
   @Test
   @DisplayName("Product 데이터 생성 테스트")
   void createProductTest() throws Exception {
+	// mockito 라이브러리: mock갹체 
     //Mock 객체에서 특정 메소드가 실행되는 경우 실제 Return을 줄 수 없기 때문에 아래와 같이 가정 사항을 만들어줌
     given(productService.saveProduct("15871", "pen", 5000, 2000)).willReturn(
         new ProductDto("15871", "pen", 5000, 2000));
