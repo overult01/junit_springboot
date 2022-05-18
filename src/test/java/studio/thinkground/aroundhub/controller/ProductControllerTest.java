@@ -52,7 +52,7 @@ public class ProductControllerTest {
         .andExpect(jsonPath("$.productName").exists()) // $.json의 key값 
         .andExpect(jsonPath("$.productPrice").exists())
         .andExpect(jsonPath("$.productStock").exists())
-        .andDo(print());
+        .andDo(print()); // andDo: 테스트 내용을 print 
 
     // verify : 해당 객체의 메소드가 실행되었는지 체크해줌
     verify(productService).getProduct("12315");
